@@ -9,12 +9,12 @@ const cardsContainer = document.querySelector(".cards-container")
 const productCard = document.querySelector(".product-card")
 const productDetailDescription = document.querySelector(".product-detail-description")
 const productDetailClose = document.querySelector(".product-detail-close")
+const darkBackground = document.querySelector(".darken")
 
 //EventListeners
 menuEmail.addEventListener("click", toogleDesktopMenu)
 burgerIcon.addEventListener("click", tooglemobileMenu)
 cartIcon.addEventListener("click", toogleShoppingCart)
-
 
 //Functions
 function closeShoppingCartIfOpen () {
@@ -49,7 +49,7 @@ function toogleDesktopMenu () {
     closeShoppingCartIfOpen()
     closeProductDetailIfOpen()
     desktopMenu.classList.toggle("inactive")
-    darken.classList.remove('inactive');
+    // darken.classList.remove('inactive');
 }
 
 function tooglemobileMenu () {
@@ -62,7 +62,7 @@ function toogleShoppingCart () {
     closeMobileMenuIfOpen()
     closeProductDetailIfOpen()
     shoppingCart.classList.toggle("inactive")
-    darken.classList.remove('inactive');
+    // darken.classList.remove('inactive');
 } 
 
 function openProductDescription () {
@@ -74,6 +74,15 @@ function openProductDescription () {
 
 function closeProductDescription () {
     productDetailDescription.classList.add("inactive")
+}
+
+function activateDarkBackground () {
+    darkBackground.classList.remove('inactive')
+}
+
+function deactivateDarkBackground () {
+    darkBackground.classList.add('inactive')
+    console.log("funciona")
 }
 
 const productList = []
@@ -125,7 +134,9 @@ function renderProducts(arr) {
         //GENERALES
         productInfoFigure.appendChild(productInfoImage)
         productCard.append(productImg, productInfo)
-     
+        //Para activar fondo oscuro
+        productCard.addEventListener("click", activateDarkBackground)
+        productDetailClose.addEventListener("click", deactivateDarkBackground)
         //FINAL
         cardsContainer.appendChild(productCard)
      }
